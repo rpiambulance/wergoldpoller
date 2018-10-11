@@ -30,10 +30,15 @@ function requestWeRGold(){
       if(first_name !== current_first_name && last_name !== current_last_name && amount !== current_amount){
         current_first_name = first_name;
         current_last_name = last_name;
+        // If the message is in honor of or in memory of the message needs to be a little different to look nice
+        if(last_name.includes("In Memory of") || last_name.includes("In Honor of")){
+          var message = first_name + " just donated " + amount + "!" + "\n" +  last_name;
+        }else{
+          var message = first_name + " " +  last_name + " just donated " + amount + "!";
+        }
         current_amount = amount;
-        let message = first_name + " " +  last_name + " just donated " + amount + "!";
         console.log(message);
-        request.post("https://slack.com/api/chat.postMessage", {form:{token:slack_variables.token, channel: slack_variables.channel, text: message}});
+        request.post("https://slack.com/api/chat.postMessage", {form:{token:slack_variables.token, channel: slack_variables.channel, text: message, icon_emoji: ":moneybag:", username: "weR Gold UpdateBot"}});
       }
     }else{
         console.log(error);
@@ -43,4 +48,4 @@ function requestWeRGold(){
 
 console.log("Application started!");
 // Calls the request function every minute
-setInterval(requestWeRGold, 60000);
+setInterval(requestWeRGold, 60);

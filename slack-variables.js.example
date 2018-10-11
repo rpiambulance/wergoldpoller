@@ -1,0 +1,2 @@
+module.exports.token  = "SLACK TOKEN HERE";
+module.exports.channel = "SLACK CHANNEL TO POST TO HERE";

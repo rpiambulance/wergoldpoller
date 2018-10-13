@@ -48,4 +48,4 @@ function requestWeRGold(){
 
 console.log("Application started!");
 // Calls the request function every minute
-setInterval(requestWeRGold, 60);
+setInterval(requestWeRGold, 60000);
